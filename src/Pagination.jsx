@@ -12,9 +12,14 @@ export default function Pagination(){
 
     useEffect(()=>{
         const url =async()=>{
-            const res = await fetch("https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json")
+            try{
+              const res = await fetch("https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json")
             const upiPage = await res.json()
             setData(upiPage);
+            }
+            catch(error){
+                console.error("Error Fetching data", error);
+            } 
         }
         url();
     },[])
