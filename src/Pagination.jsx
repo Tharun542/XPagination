@@ -13,11 +13,15 @@ export default function Pagination(){
     useEffect(()=>{
         const url =async()=>{
             try{
-              const res = await fetch("https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json")
+              const res = await fetch("https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json");
+              if(!res.ok){
+                throw new Error("fetch Data Failed")
+              }
             const upiPage = await res.json()
             setData(upiPage);
             }
             catch(error){
+                alert("failed to fetch data");
                 console.error("Error Fetching data", error);
             } 
         }
